@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed Rayan — Robotics & IoT Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #060b14;
+  --surface: #0f1623;
+  --surface-raised: #151d2e;
+  --accent: #00d4aa;
+  --accent-dim: rgba(0, 212, 170, 0.12);
+  --blue: #3b82f6;
+  --text: #dfe6ee;
+  --text-muted: #6b7d95;
+  --border: rgba(255,255,255,0.06);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; }
+
+a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+a:hover { opacity: 0.8; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(6, 11, 20, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+nav .container {
+  display: flex; justify-content: space-between; align-items: center;
+  height: 60px;
+}
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 1.1rem; color: var(--text);
+  letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.85rem; font-weight: 500; color: var(--text-muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); opacity: 1; }
+.menu-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding-top: 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -40%; right: -20%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(0,212,170,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.8rem; font-weight: 500; color: var(--accent);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.04em;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--accent);
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 700; letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+.hero h1 .accent { color: var(--accent); }
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-muted); max-width: 600px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+.hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.5rem; border-radius: 6px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem; font-weight: 600;
+  transition: all 0.25s;
+  border: none; cursor: pointer;
+}
+.btn-primary {
+  background: var(--accent); color: var(--bg);
+}
+.btn-primary:hover { background: #00e8bb; opacity: 1; }
+.btn-outline {
+  background: transparent; color: var(--accent);
+  border: 1px solid rgba(0, 212, 170, 0.35);
+}
+.btn-outline:hover { border-color: var(--accent); background: var(--accent-dim); opacity: 1; }
+
+.hero-stats {
+  display: flex; gap: 3rem; margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.stat-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem; font-weight: 700; color: var(--accent);
+  display: block;
+}
+.stat-label {
+  font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;
+  font-weight: 400;
+}
+
+/* ─── SECTIONS ─── */
+section { padding: 6rem 0; }
+
+.section-header {
+  margin-bottom: 3.5rem;
+}
+.section-header h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700; letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+.section-header p {
+  color: var(--text-muted); max-width: 560px; font-size: 0.95rem;
+}
+.section-label {
+  font-size: 0.75rem; font-weight: 600; color: var(--accent);
+  letter-spacing: 0.06em; margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.section-label::before {
+  content: ''; width: 16px; height: 1px; background: var(--accent);
+}
+
+/* ─── ABOUT ─── */
+#about { border-top: 1px solid var(--border); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: start;
+}
+.about-text p { margin-bottom: 1.25rem; color: var(--text-muted); font-size: 0.95rem; }
+.about-text p strong { color: var(--text); font-weight: 500; }
+.achievements-list { list-style: none; }
+.achievements-list li {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  display: flex; gap: 0.75rem; align-items: baseline;
+}
+.achievements-list li::before {
+  content: '▸'; color: var(--accent); flex-shrink: 0; font-size: 0.7rem;
+}
+
+/* ─── SKILLS ─── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  transition: border-color 0.3s;
+}
+.skill-card:hover { border-color: rgba(0, 212, 170, 0.25); }
+.skill-card h3 {
+  font-size: 1rem; font-weight: 600;
+  margin-bottom: 1rem; color: var(--text);
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.skill-tag {
+  font-size: 0.75rem; padding: 0.3rem 0.65rem;
+  background: var(--accent-dim);
+  color: var(--accent); border-radius: 4px;
+  font-weight: 500;
+}
+
+/* ─── EXPERIENCE TIMELINE ─── */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 1px; background: linear-gradient(to bottom, var(--accent), var(--border));
+}
+.timeline-item {
+  position: relative; margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+.timeline-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  position: absolute; left: -2rem; top: 0.4rem;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--accent);
+}
+.timeline-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.timeline-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem; font-weight: 600; color: var(--text);
+}
+.timeline-company {
+  font-size: 0.95rem; color: var(--accent); font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+.timeline-date {
+  font-size: 0.8rem; color: var(--text-muted); font-weight: 500;
+}
+.timeline-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+.timeline-desc li {
+  margin-bottom: 0.4rem; padding-left: 0.25rem;
+  list-style: none; position: relative;
+}
+.timeline-desc li::before {
+  content: '—'; color: var(--accent); margin-right: 0.5rem; font-size: 0.75rem;
+}
+
+/* ─── PROJECTS ─── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+  transition: border-color 0.3s, transform 0.3s;
+  display: flex; flex-direction: column;
+}
+.project-card:hover {
+  border-color: rgba(0, 212, 170, 0.3);
+  transform: translateY(-2px);
+}
+.project-year {
+  font-size: 0.75rem; font-weight: 600;
+  color: var(--accent); margin-bottom: 0.75rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.project-card h3 {
+  font-size: 1.15rem; font-weight: 600; margin-bottom: 0.75rem;
+}
+.project-card p {
+  color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+.project-tech { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.project-tech span {
+  font-size: 0.7rem; padding: 0.2rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 3px; color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ─── PUBLICATION ─── */
+.pub-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2.5rem;
+  max-width: 750px;
+}
+.pub-card h3 { font-size: 1.1rem; margin-bottom: 0.75rem; font-weight: 600; }
+.pub-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+
+/* ─── EDUCATION ─── */
+.edu-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 700px;
+}
+.edu-card h3 { font-size: 1.15rem; margin-bottom: 0.3rem; }
+.edu-card .uni { color: var(--accent); font-weight: 500; font-size: 0.95rem; margin-bottom: 1rem; }
+.edu-extras {
+  list-style: none; font-size: 0.88rem; color: var(--text-muted);
+}
+.edu-extras li { margin-bottom: 0.4rem; padding-left: 1rem; position: relative; }
+.edu-extras li::before {
+  content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+}
+
+/* ─── CONTACT ─── */
+#contact { border-top: 1px solid var(--border); }
+.contact-grid {
+  display: flex; gap: 2rem; flex-wrap: wrap;
+}
+.contact-link {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.9rem; font-weight: 500;
+  transition: border-color 0.3s;
+}
+.contact-link:hover { border-color: var(--accent); opacity: 1; }
+.contact-icon {
+  width: 20px; height: 20px; flex-shrink: 0;
+  color: var(--accent);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.8rem; color: var(--text-muted);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 60px; left: 0; right: 0;
+    background: rgba(6, 11, 20, 0.97);
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+  }
+  .menu-toggle { display: block; }
+  .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .timeline { padding-left: 1.5rem; }
+  .timeline-header { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-logo">Ahmed<span>.</span>Rayan</div>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#about" onclick="this.closest('.nav-links').classList.remove('open')">About</a></li>
+      <li><a href="#skills" onclick="this.closest('.nav-links').classList.remove('open')">Skills</a></li>
+      <li><a href="#experience" onclick="this.closest('.nav-links').classList.remove('open')">Experience</a></li>
+      <li><a href="#projects" onclick="this.closest('.nav-links').classList.remove('open')">Projects</a></li>
+      <li><a href="#contact" onclick="this.closest('.nav-links').classList.remove('open')">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Robotics &amp; IoT Engineer</div>
+      <h1>Ahmed Rafat<br><span class="accent">Rayan</span></h1>
+      <p class="hero-subtitle">
+        Building intelligent systems from circuit board to cloud — embedded control,
+        autonomous navigation, and end-to-end IoT architectures for the real world.
+      </p>
+      <div class="hero-links">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="https://www.linkedin.com/in/ahmed-rayan-081454246/" target="_blank" class="btn btn-outline">LinkedIn</a>
+        <a href="https://github.com/AhmedRayan254" target="_blank" class="btn btn-outline">GitHub</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span class="stat-number">10,000+</span>
+          <span class="stat-label">Students Instructed</span>
+        </div>
+        <div>
+          <span class="stat-number">4+</span>
+          <span class="stat-label">Years in Industry</span>
+        </div>
+        <div>
+          <span class="stat-number">3</span>
+          <span class="stat-label">Deployed Robotic Platforms</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Background</div>
+      <h2>About Me</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a <strong>robotics and IoT engineer</strong> based in Cairo, Egypt, with hands-on experience across the full
+          engineering stack — from sensor wiring and power system design through embedded firmware to cloud-connected
+          telemetry pipelines.
+        </p>
+        <p>
+          In robotics, I work with <strong>ROS/ROS2</strong>, Gazebo simulation, and autonomous navigation on platforms
+          ranging from AVR and STM32 microcontrollers to Raspberry Pi and Linux edge computers. In IoT, I architect
+          <strong>end-to-end systems</strong> from edge device to AWS cloud, using MQTT, REST, and WebSockets across
+          platform-agnostic firmware.
+        </p>
+        <p>
+          Beyond engineering, I lead technical training programmes — managing instructors, designing curricula, and
+          coaching competition teams. I was selected for the <strong>Digital Egypt Pioneers Initiative (DEPI)</strong>
+          across all three phases, and have instructed over 10,000 students in robotics and programming.
+        </p>
+      </div>
+      <div>
+        <ul class="achievements-list">
+          <li>Architected an end-to-end IoT data path for a three-node marine monitoring system spanning AWS and on-prem servers</li>
+          <li>Delivered two complete robot platforms end-to-end — autonomous ground robot and underwater ROV</li>
+          <li>Built production Qt5/PyQt5 real-time monitoring stations on two deployed systems</li>
+          <li>Published in the Journal of Advanced Technology in Applied Sciences (JATAS)</li>
+          <li>Awarded 2nd place at IEEE RAS as team leader for control-system architecture</li>
+          <li>Selected for DEPI Phases 1, 2, and 3</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Capabilities</div>
+      <h2>Technical Skills</h2>
+      <p>Platform-agnostic engineering across the robotics and IoT stack.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Robotics</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">ROS / ROS2</span>
+          <span class="skill-tag">Gazebo</span>
+          <span class="skill-tag">Nav2</span>
+          <span class="skill-tag">Path Planning</span>
+          <span class="skill-tag">Sensor Fusion</span>
+          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">ROV</span>
+          <span class="skill-tag">Autonomous Nav</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Embedded &amp; Electronics</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">STM32</span>
+          <span class="skill-tag">AVR</span>
+          <span class="skill-tag">Arduino</span>
+          <span class="skill-tag">ESP32</span>
+          <span class="skill-tag">Raspberry Pi</span>
+          <span class="skill-tag">Firmware</span>
+          <span class="skill-tag">Circuit Design</span>
+          <span class="skill-tag">Power Systems</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>IoT Architecture</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Edge-to-Cloud</span>
+          <span class="skill-tag">MQTT</span>
+          <span class="skill-tag">REST / HTTP</span>
+          <span class="skill-tag">WebSockets</span>
+          <span class="skill-tag">Cellular IoT</span>
+          <span class="skill-tag">Wi-Fi</span>
+          <span class="skill-tag">Telemetry Pipelines</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Cloud &amp; Backend</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">SQLite</span>
+          <span class="skill-tag">Ubuntu / Linux</span>
+          <span class="skill-tag">On-Prem Servers</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>HMI &amp; Monitoring</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Qt5 / PyQt5</span>
+          <span class="skill-tag">Telemetry Dashboards</span>
+          <span class="skill-tag">Live Video</span>
+          <span class="skill-tag">Alarm Systems</span>
+          <span class="skill-tag">Production Deployment</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Languages &amp; Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C / C++</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Git / GitHub</span>
+          <span class="skill-tag">PlatformIO</span>
+          <span class="skill-tag">STM32CubeIDE</span>
+          <span class="skill-tag">Mosquitto</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Career</div>
+      <h2>Professional Experience</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-title">Head of Technical — Robotics, AI &amp; Software Programs</span>
+          <span class="timeline-date">Sep 2025 – Present</span>
+        </div>
+        <div class="timeline-company">Engineeius</div>
+        <ul class="timeline-desc">
+          <li>Leading and supervising a team of technical instructors across Robotics, AI, and Software programmes</li>
+          <li>Own technical content quality and curriculum development at company level</li>
+          <li>Driving continuous improvement in training delivery and team performance</li>
+          <li>Mentoring junior instructors and enhancing learning methods for better knowledge transfer</li>
+          <li>Maintaining a structured JavaScript programming track covering core concepts through API integration</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-title">Technical Team Manager — IoT, Communications &amp; Robotics</span>
+          <span class="timeline-date">Jul 2025 – Present</span>
+        </div>
+        <div class="timeline-company">BlueTechnova</div>
+        <ul class="timeline-desc">
+          <li>Technical owner of a marine monitoring system spanning shore unit, surface boat, and underwater ROV</li>
+          <li>Hands-on sensor integration: interfaced the full onboard sensor set over UART, I2C, and SPI with signal conditioning and calibration</li>
+          <li>Built the field connectivity path over Vodafone IoT cellular line into the central communication system</li>
+          <li>Architected the end-to-end data path from edge devices to AWS cloud and on-premises servers</li>
+          <li>Coordinating cross-functional teams integrating embedded ROV control, AI detection, and connectivity</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-title">Robotics Team Leader</span>
+          <span class="timeline-date">Aug 2025 – Jun 2026</span>
+        </div>
+        <div class="timeline-company">Engineeius</div>
+        <ul class="timeline-desc">
+          <li>Managed and mentored 20 instructors delivering robotics training in ROS and embedded control</li>
+          <li>Supervised technical development of 120 students organised into 20 teams</li>
+          <li>Prepared and led team participation in the IgnitED26 Robotics Competition</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-title">Technical Head</span>
+          <span class="timeline-date">Aug 2023 – Sep 2024</span>
+        </div>
+        <div class="timeline-company">Robotics Student Organization, Helwan University</div>
+        <ul class="timeline-desc">
+          <li>Designed and implemented an IoT-enabled autonomous mine detection robot</li>
+          <li>Integrated ROS for navigation and control with real-time monitoring</li>
+          <li>Developed GUI interfaces for live tracking, command input, and sensor visualization</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-title">Coding Instructor</span>
+          <span class="timeline-date">2025 · 9 months</span>
+        </div>
+        <div class="timeline-company">Engineeius</div>
+        <ul class="timeline-desc">
+          <li>Delivered intensive four-hour robotics and coding sessions to cohorts of 25 engineering students</li>
+          <li>Prepared session material and hands-on lab exercises from fundamentals through working builds</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-title">R&amp;D Content Developer</span>
+          <span class="timeline-date">2025 · 3 months</span>
+        </div>
+        <div class="timeline-company">Mindvalley</div>
+        <ul class="timeline-desc">
+          <li>Curriculum design and applied research methodology for coding and robotics innovation projects</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-title">Robotics Instructor</span>
+          <span class="timeline-date">Jan 2024 – Jan 2025</span>
+        </div>
+        <div class="timeline-company">WIRO Robotics</div>
+        <ul class="timeline-desc">
+          <li>Mentored student teams through VEX robotics competitions with consistent competitive results</li>
+          <li>Guided teams across build, programming, and competition preparation</li>
+          <li>Taught robotics and programming to students aged 12–16 using project-based learning</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-title">Coding Instructor — DEPI Initiative</span>
+          <span class="timeline-date">Oct 2022 – Aug 2024</span>
+        </div>
+        <div class="timeline-company">iSchool</div>
+        <ul class="timeline-desc">
+          <li>Instructed over 1,000 students in robotics and programming, online and on-site</li>
+          <li>Selected as instructor for the Digital Egypt Pioneers Initiative (DEPI), Phases 1, 2, and 3</li>
+          <li>Delivered courses in Arduino, Python, embedded systems, IoT prototypes, and basic automation</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Engineering</div>
+      <h2>Selected Projects</h2>
+      <p>End-to-end systems from sensor circuits to cloud dashboards.</p>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <span class="project-year">2025 – 2026</span>
+        <h3>Marine Monitoring System</h3>
+        <p>
+          Three-platform marine monitoring system — shore unit, surface boat, and underwater ROV — with end-to-end IoT
+          data path spanning AWS cloud and on-premises server infrastructure. Full sensor integration over
+          cellular IoT connectivity.
+        </p>
+        <div class="project-tech">
+          <span>ROS</span><span>MQTT</span><span>AWS</span><span>Cellular IoT</span><span>Raspberry Pi</span><span>UART/I2C/SPI</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <span class="project-year">2025 – 2026</span>
+        <h3>EVOX AI — Industrial Voice-Control Dashboard</h3>
+        <p>
+          Full-stack AI platform to monitor and control manufacturing machines through real-time voice processing.
+          FastAPI backend with localised Whisper NLP models, low-latency MQTT actuation on ESP32 edge microcontrollers,
+          and PostgreSQL/SQLite telemetry store.
+        </p>
+        <div class="project-tech">
+          <span>FastAPI</span><span>Whisper</span><span>MQTT</span><span>ESP32</span><span>PostgreSQL</span><span>Python</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <span class="project-year">2024</span>
+        <h3>Mine Sweeper Robot</h3>
+        <p>
+          ROS-based autonomous detection platform with Nav2 navigation stack, sensor fusion for real-time obstacle
+          detection and localisation, validated in Gazebo simulation. MQTT control and telemetry layer with
+          Qt5/PyQt5 monitoring station.
+        </p>
+        <div class="project-tech">
+          <span>ROS / Nav2</span><span>Gazebo</span><span>MQTT</span><span>SQLite</span><span>PyQt5</span><span>Sensor Fusion</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <span class="project-year">2023</span>
+        <h3>ROV Control System</h3>
+        <p>
+          Complete embedded control system for an underwater ROV — sensor circuit design, power distribution,
+          motor-driver firmware, communication modules, and topside control box. Qt5/PyQt5 station with
+          OpenCV video path and MQTT teleoperation layer.
+        </p>
+        <div class="project-tech">
+          <span>AVR</span><span>Embedded C</span><span>MQTT</span><span>OpenCV</span><span>PyQt5</span><span>Power Design</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <span class="project-year">2022</span>
+        <h3>IEEE RAS Competition Robot</h3>
+        <p>
+          Led control-system architecture using Arduino and ESP32 as team leader.
+          Team awarded 2nd place in competition.
+        </p>
+        <div class="project-tech">
+          <span>Arduino</span><span>ESP32</span><span>C/C++</span><span>Circuit Design</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATION -->
+<section id="publication">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Research</div>
+      <h2>Publication</h2>
+    </div>
+    <div class="pub-card">
+      <h3>Embedded PBX Systems: Enhancing Efficiency, Scalability, and Cost Management</h3>
+      <p class="pub-meta">
+        Journal of Advanced Technology in Applied Sciences (JATAS)<br>
+        Authors: A.R.A. Rayan, A.O.M. Yassin, M.S. Mohamed<br>
+        Accepted: 22 February 2025
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Education</div>
+      <h2>Education &amp; Training</h2>
+    </div>
+    <div class="edu-card">
+      <h3>B.Eng. Electronics &amp; Communication Engineering</h3>
+      <div class="uni">Helwan University — Graduated May 2026</div>
+      <ul class="edu-extras">
+        <li>ITI — Summer Communication for O-RAN</li>
+        <li>ITI — Wireless Communication for IoT</li>
+        <li>IMT School — Embedded AVR, Arduino, ESP32, Raspberry Pi</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Get in touch</div>
+      <h2>Contact</h2>
+      <p>Open to opportunities in robotics, IoT, embedded systems, and technical leadership.</p>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:ahmed.rafat.rayan@gmail.com" class="contact-link">
+        <svg class="contact-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0l-9.75 6.5-9.75-6.5"/></svg>
+        ahmed.rafat.rayan@gmail.com
+      </a>
+      <a href="tel:+201020567963" class="contact-link">
+        <svg class="contact-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+        (+20) 102 056 7963
+      </a>
+      <a href="https://www.linkedin.com/in/ahmed-rayan-081454246/" target="_blank" class="contact-link">
+        <svg class="contact-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/AhmedRayan254" target="_blank" class="contact-link">
+        <svg class="contact-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Ahmed Rafat Rayan · Robotics &amp; IoT Engineer · Cairo, Egypt
+  </div>
+</footer>
+
+</body>
+</html>
